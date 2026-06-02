@@ -301,6 +301,46 @@ footer {
     .contact-list dt { padding-top: 0.5rem; }
 }
 
+/* ---------- Interactions / polish ---------- */
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 4.5rem; }
+
+.topnav a { transition: color .15s ease, border-color .15s ease; }
+.topnav a.active { color: #1F3A68; border-bottom-color: #1F3A68; }
+
+.paper::before { transition: color .15s ease; }
+.paper:hover::before { color: #1F3A68; }
+
+a:focus-visible,
+summary:focus-visible,
+.copy-btn:focus-visible {
+    outline: 2px solid #1F3A68;
+    outline-offset: 2px;
+    border-radius: 2px;
+}
+
+.copy-btn {
+    font-family: inherit;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #b0b0b0;
+    background: none;
+    border: 0;
+    padding: 0;
+    margin-left: 0.6rem;
+    cursor: pointer;
+    transition: color .15s ease;
+    vertical-align: 0.04em;
+}
+.copy-btn:hover { color: #1F3A68; }
+.copy-btn.copied { color: #1F3A68; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before { transition: none !important; }
+}
+
 /* ---------- Print ---------- */
 @media print {
     .topnav { display: none; }
