@@ -1,5 +1,27 @@
 /* Leonard Yang Liu — personal site. Plain academic homepage. */
 
+/* ---------- Type: self-hosted XCharter (matches the CV) ---------- */
+@font-face {
+    font-family: 'XCharter';
+    src: url('fonts/XCharter-Roman.woff2') format('woff2');
+    font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'XCharter';
+    src: url('fonts/XCharter-Italic.woff2') format('woff2');
+    font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+    font-family: 'XCharter';
+    src: url('fonts/XCharter-Bold.woff2') format('woff2');
+    font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+    font-family: 'XCharter';
+    src: url('fonts/XCharter-BoldItalic.woff2') format('woff2');
+    font-weight: 700; font-style: italic; font-display: swap;
+}
+
 html { font-size: 17px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: var(--bg); }
 
 :root {
@@ -23,8 +45,10 @@ html { font-size: 17px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth;
     --nav-bg: rgba(255, 255, 255, 0.94);
 }
 
+/* Dark palette: applied when the system prefers dark (unless the visitor
+   forced light), or when the visitor explicitly chose dark. */
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         --bg: #15171c;
         --fg: #e3e3e3;
         --fg-2: #cfd1d4;
@@ -44,9 +68,28 @@ html { font-size: 17px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth;
         --nav-bg: rgba(21, 23, 28, 0.9);
     }
 }
+:root[data-theme="dark"] {
+    --bg: #15171c;
+    --fg: #e3e3e3;
+    --fg-2: #cfd1d4;
+    --fg-3: #aab0b8;
+    --muted: #9098a2;
+    --faint: #7c828c;
+    --faint-2: #6e757f;
+    --copy: #6e757f;
+    --sep: #4a4f57;
+    --accent: #8bb0e6;
+    --accent-hover: #b0caf2;
+    --line: #333a45;
+    --line-soft: #2a303a;
+    --line-faint: #23272e;
+    --line-table: #333a45;
+    --pdf-border: #3a4762;
+    --nav-bg: rgba(21, 23, 28, 0.9);
+}
 
 body {
-    font-family: Charter, 'Iowan Old Style', 'Source Serif Pro', 'Apple Garamond', Georgia, serif;
+    font-family: 'XCharter', Charter, 'Iowan Old Style', 'Source Serif Pro', 'Apple Garamond', Georgia, serif;
     line-height: 1.6;
     color: var(--fg);
     background: var(--bg);
@@ -92,6 +135,7 @@ img { max-width: 100%; display: block; }
     max-width: 1080px;
     margin: 0 auto;
     display: flex;
+    align-items: center;
     gap: 1.6rem;
     font-size: 0.9rem;
 }
@@ -110,6 +154,27 @@ img { max-width: 100%; display: block; }
     color: var(--accent);
     border-bottom-color: var(--accent);
 }
+
+/* ---------- Light / dark toggle ---------- */
+.theme-toggle {
+    margin-left: auto;
+    display: none;              /* shown only when JS is active */
+    align-items: center;
+    justify-content: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    background: none;
+    border: 0;
+    padding: 0;
+    color: var(--fg-3);
+    cursor: pointer;
+    line-height: 0;
+    border-radius: 4px;
+    transition: color .15s ease;
+}
+html.js .theme-toggle { display: inline-flex; }
+.theme-toggle:hover { color: var(--accent); }
+.theme-toggle svg { width: 1.05rem; height: 1.05rem; display: block; }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -210,7 +275,7 @@ h2:hover .heading-anchor,
     position: absolute;
     left: 0;
     top: 0.18rem;
-    font-family: Charter, Georgia, serif;
+    font-family: 'XCharter', Charter, Georgia, serif;
     color: var(--faint-2);
     font-size: 0.95rem;
     font-variant-numeric: tabular-nums;
@@ -384,6 +449,7 @@ footer {
 a:focus-visible,
 summary:focus-visible,
 .copy-btn:focus-visible,
+.theme-toggle:focus-visible,
 .heading-anchor:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
@@ -418,7 +484,7 @@ main section.reveal.in { opacity: 1; transform: none; }
 
 /* ---------- Print ---------- */
 @media print {
-    .topnav, #progress, .heading-anchor, .copy-btn { display: none; }
+    .topnav, #progress, .heading-anchor, .copy-btn, .theme-toggle { display: none; }
     body { max-width: none; margin: 0; padding: 0; color: #000; }
     a { color: #000; text-decoration: none; }
     .hero { margin-bottom: 1.5rem; }

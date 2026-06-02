@@ -141,4 +141,42 @@
       }
     });
   }
+
+  // 6) Light / dark toggle — overrides the system setting and remembers it.
+  var toggle = document.getElementById("theme-toggle");
+  if (toggle) {
+    var SUN =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
+    var MOON =
+      '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.8 6.8 0 0 0 9.8 9.8z"/></svg>';
+    var effective = function () {
+      var f = document.documentElement.getAttribute("data-theme");
+      if (f === "light" || f === "dark") return f;
+      return window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    };
+    var render = function () {
+      var dark = effective() === "dark";
+      toggle.innerHTML = dark ? SUN : MOON;
+      toggle.setAttribute(
+        "aria-label",
+        dark ? "Switch to light mode" : "Switch to dark mode"
+      );
+      toggle.setAttribute("aria-pressed", dark ? "true" : "false");
+    };
+    toggle.addEventListener("click", function () {
+      var next = effective() === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+      render();
+    });
+    if (window.matchMedia) {
+      var mq = window.matchMedia("(prefers-color-scheme: dark)");
+      if (mq.addEventListener) mq.addEventListener("change", render);
+      else if (mq.addListener) mq.addListener(render);
+    }
+    render();
+  }
 })();

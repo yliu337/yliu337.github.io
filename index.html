@@ -31,7 +31,20 @@
     <meta name="twitter:description" content="Research on AI, generative AI, and financial information in capital markets. On the 2026–27 academic job market.">
     <meta name="twitter:image" content="https://yliu337.github.io/og-image.png">
 
+    <link rel="preload" href="fonts/XCharter-Roman.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="styles.css">
+
+    <script>
+      // Apply the saved theme before first paint (prevents a flash) and mark JS on.
+      (function () {
+        var e = document.documentElement;
+        e.classList.add('js');
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') e.setAttribute('data-theme', t);
+        } catch (err) {}
+      })();
+    </script>
 </head>
 <body>
 
@@ -43,6 +56,7 @@
         <a href="#research">Research</a>
         <a href="#teaching">Teaching</a>
         <a href="#contact">Contact</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Light / dark"></button>
     </div>
 </nav>
 
