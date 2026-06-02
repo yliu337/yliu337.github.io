@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code local config
+.claude/
+
+# Private notes — chatbot system prompt source of truth
+knowledge-base.md
+
+# Scratch/debug
+_debug.html
+_inspect.html
+*.log
+
+# Draft PDFs — keep private, not published
+*.pdf
+
+# Internal dev notes — not for the public repo
+README.md

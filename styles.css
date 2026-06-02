@@ -1,0 +1,302 @@
+/* Leonard Yang Liu — personal site. Plain academic homepage. */
+
+html { font-size: 17px; -webkit-text-size-adjust: 100%; }
+
+body {
+    font-family: Charter, 'Iowan Old Style', 'Source Serif Pro', 'Apple Garamond', Georgia, serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #ffffff;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* { box-sizing: border-box; }
+
+a { color: #1F3A68; text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 0.06em; }
+a:hover { color: #0a1a3a; }
+
+img { max-width: 100%; display: block; }
+
+/* ---------- Top nav ---------- */
+.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: saturate(180%) blur(8px);
+    -webkit-backdrop-filter: saturate(180%) blur(8px);
+    border-bottom: 1px solid #eee;
+    margin: -3rem -2rem 2rem;
+    padding: 0.75rem 2rem;
+}
+.topnav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1.6rem;
+    font-size: 0.9rem;
+}
+.topnav a {
+    color: #4a4a4a;
+    text-decoration: none;
+    padding: 0.15rem 0;
+    border-bottom: 1px solid transparent;
+}
+.topnav a:hover {
+    color: #1a1a1a;
+    border-bottom-color: #1a1a1a;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 2.75rem;
+}
+.portrait {
+    width: 165px;
+    height: 205px;
+    object-fit: cover;
+    object-position: top center;
+    flex-shrink: 0;
+}
+.hero-text { min-width: 0; }
+.hero h1 {
+    font-size: 1.95rem;
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+.hero .affil {
+    margin: 0 0 0.9rem;
+    color: #2a2a2a;
+}
+.hero .links {
+    margin: 0 0 0.55rem;
+    font-size: 0.95rem;
+}
+.hero .links .sep {
+    color: #aaa;
+    margin: 0 0.45em;
+}
+
+/* ---------- Sections ---------- */
+section { margin-top: 2.75rem; }
+
+/* ---------- About ---------- */
+#about p {
+    margin: 0 0 0.95rem;
+    line-height: 1.72;
+}
+#about p:last-child { margin-bottom: 0; }
+#about p:first-of-type { font-size: 1.04rem; color: #1a1a1a; }
+#about p:not(:first-of-type) { color: #4a4a4a; font-size: 0.98rem; }
+#about p.market {
+    margin-top: 1.4rem;
+    color: #1a1a1a;
+    font-style: italic;
+    font-size: 1rem;
+    border-left: 2px solid #1F3A68;
+    padding-left: 0.85rem;
+}
+
+h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1a1a1a;
+    margin: 0 0 1.1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+/* ---------- Papers ---------- */
+.papers {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: paper;
+}
+.paper {
+    counter-increment: paper;
+    margin-bottom: 2rem;
+    padding-left: 2.2rem;
+    position: relative;
+}
+.paper::before {
+    content: "[" counter(paper) "]";
+    position: absolute;
+    left: 0;
+    top: 0.18rem;
+    font-family: Charter, Georgia, serif;
+    color: #999;
+    font-size: 0.95rem;
+    font-variant-numeric: tabular-nums;
+}
+.paper:last-child { margin-bottom: 0; }
+.paper h3 {
+    font-size: 1.06rem;
+    font-weight: 600;
+    margin: 0 0 0.3rem;
+    line-height: 1.35;
+}
+.paper h3 .pdf-link {
+    display: inline-block;
+    margin-left: 0.5em;
+    padding: 0.05em 0.45em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #1F3A68;
+    border: 1px solid #c9d2e0;
+    border-radius: 2px;
+    text-decoration: none;
+    vertical-align: 0.18em;
+}
+.paper h3 .pdf-link:hover {
+    background: #1F3A68;
+    color: #fff;
+    border-color: #1F3A68;
+}
+.paper .byline {
+    margin: 0 0 0.2rem;
+    color: #1a1a1a;
+    font-size: 0.98rem;
+}
+.paper .status {
+    margin: 0 0 0.35rem;
+    color: #2a2a2a;
+    font-size: 0.95rem;
+}
+.paper .note {
+    margin: 0 0 0.55rem;
+    font-size: 0.92rem;
+    color: #5a5a5a;
+}
+.paper .abstract {
+    margin: 0.55rem 0 0;
+}
+.paper .abstract > summary {
+    cursor: pointer;
+    display: inline-block;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: #1F3A68;
+    list-style: none;
+    padding: 0.15rem 0;
+    user-select: none;
+}
+.paper .abstract > summary::-webkit-details-marker { display: none; }
+.paper .abstract > summary::before {
+    content: "+";
+    display: inline-block;
+    width: 1em;
+    color: #888;
+    font-weight: 400;
+}
+.paper .abstract[open] > summary::before { content: "\2212"; /* − */ }
+.paper .abstract > summary:hover { color: #0a1a3a; }
+.paper .abstract > p {
+    margin: 0.5rem 0 0;
+    padding: 0 0 0 1rem;
+    border-left: 2px solid #e0e0e0;
+    color: #2a2a2a;
+    font-size: 0.96rem;
+    line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* ---------- Teaching ---------- */
+.evals {
+    border-collapse: collapse;
+    margin: 1rem auto;
+    font-size: 0.95rem;
+}
+.evals th, .evals td {
+    padding: 0.35rem 1.75rem;
+    text-align: center;
+    font-weight: normal;
+    font-variant-numeric: tabular-nums;
+}
+.evals th:first-child, .evals td:first-child { text-align: left; padding-left: 0; }
+.evals th:last-child, .evals td:last-child { padding-right: 0; }
+.evals thead th {
+    border-bottom: 1px solid #ccc;
+    color: #5a5a5a;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+}
+.evals tbody td:first-child { color: #5a5a5a; }
+
+.note {
+    color: #5a5a5a;
+    font-size: 0.92rem;
+}
+
+.subhead {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #5a5a5a;
+    margin: 1.5rem 0 0.6rem;
+}
+p.other-teaching {
+    margin: 0 0 0.4rem;
+    font-size: 0.96rem;
+}
+p.other-teaching:last-of-type { margin-bottom: 0; }
+
+/* ---------- Contact ---------- */
+.contact-list {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 0.35rem 1rem;
+    margin: 0;
+}
+.contact-list dt {
+    color: #5a5a5a;
+    font-size: 0.86rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    padding-top: 0.1rem;
+}
+.contact-list dd { margin: 0; }
+
+/* ---------- Footer ---------- */
+footer {
+    margin-top: 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 560px) {
+    body { padding: 2rem 1.25rem 3rem; }
+    .hero {
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+    .portrait { width: 130px; height: 165px; }
+    .hero h1 { font-size: 1.65rem; }
+    .paper { padding-left: 1.75rem; }
+    .evals th, .evals td { padding-right: 1rem; }
+    .contact-list { grid-template-columns: 1fr; gap: 0 0; }
+    .contact-list dt { padding-top: 0.5rem; }
+}
