@@ -23,6 +23,8 @@ _inspect.html
 
 # Draft PDFs — keep private, not published
 *.pdf
+# ...except the CV: a public document, served on the domain at /cv.pdf
+!cv.pdf
 
 # Internal dev notes — not for the public repo
 README.md

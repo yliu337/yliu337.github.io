@@ -286,13 +286,15 @@ h2:hover .heading-anchor,
 }
 .paper:hover::before { color: var(--accent); }
 .paper:last-child { margin-bottom: 0; }
+#jmp { scroll-margin-top: 4.5rem; }
 .paper h3 {
     font-size: 1.06rem;
     font-weight: 600;
     margin: 0 0 0.3rem;
     line-height: 1.35;
 }
-.paper h3 .pdf-link {
+.paper h3 .pdf-link,
+.paper h3 .jmp-badge {
     display: inline-block;
     margin-left: 0.5em;
     padding: 0.05em 0.45em;
