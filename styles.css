@@ -107,6 +107,8 @@ body {
 
 a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 0.06em; }
 a:hover { color: var(--accent-hover); }
+/* Hand (pointer) cursor on anything clickable */
+a[href], button, summary, label, [role="button"], .pdf-link, .copy-btn, .theme-toggle { cursor: pointer; }
 
 img { max-width: 100%; display: block; }
 
