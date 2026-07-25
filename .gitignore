@@ -23,8 +23,11 @@ _inspect.html
 
 # Draft PDFs — keep private, not published
 *.pdf
-# ...except the CV: a public document, served on the domain at /cv.pdf
+# ...except public documents served on the domain:
 !cv.pdf
+!ai_powered_analysts.pdf
+!genai_estimize.pdf
+!cfo_debuts.pdf
 
 # Internal dev notes — not for the public repo
 README.md
