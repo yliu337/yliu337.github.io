@@ -44,6 +44,15 @@ html { font-size: 19px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth;
     --line-table: #cccccc;
     --pdf-border: #c9d2e0;
     --nav-bg: rgba(255, 255, 255, 0.94);
+
+    /* Sleeve spines. Six muted inks, cycled so the shelf reads as a shelf
+       rather than six copies of one card. */
+    --sleeve-a: #7a3b3b;
+    --sleeve-b: #856228;
+    --sleeve-c: #2f5f5c;
+    --sleeve-d: #4c4c55;
+    --sleeve-e: #35507d;
+    --sleeve-f: #5d3a59;
 }
 
 /* Dark palette: applied when the system prefers dark (unless the visitor
@@ -89,6 +98,13 @@ html { font-size: 19px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth;
     --line-table: #333a45;
     --pdf-border: #3a4762;
     --nav-bg: rgba(21, 23, 28, 0.9);
+
+    --sleeve-a: #c78d8d;
+    --sleeve-b: #c9a86c;
+    --sleeve-c: #79b3af;
+    --sleeve-d: #a3a6af;
+    --sleeve-e: #8fabdd;
+    --sleeve-f: #b48fae;
 }
 
 body {
@@ -155,9 +171,23 @@ img { max-width: 100%; display: block; }
     color: var(--fg);
     border-bottom-color: var(--fg);
 }
-.topnav a.active {
+.topnav a.active,
+.topnav a[aria-current="page"] {
     color: var(--accent);
     border-bottom-color: var(--accent);
+}
+/* The name at the far left is a home link, not a section link. */
+.topnav-home {
+    font-weight: 600;
+    color: var(--fg) !important;
+    margin-right: 0.4rem;
+}
+.topnav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
 /* ---------- Light / dark toggle ---------- */
@@ -500,4 +530,381 @@ main section.reveal.in { opacity: 1; transform: none; }
     .paper .abstract { display: none; }
     main section.reveal { opacity: 1 !important; transform: none !important; }
     footer { border: none; color: #000; margin-top: 2rem; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   2026-08 redesign: measured reading width, editorial research entries,
+   sub-pages, hobby cards, photo mosaic, works list.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root {
+    /* ~70 characters at the body size. The shell stays 1080px wide so the
+       nav, hero and gallery can use the full width; only running prose is
+       held to a measure the eye can track without losing its place. */
+    --measure: 36rem;
+}
+
+/* ---------- Reading measure ---------- */
+#about p,
+.prose p,
+.paper-body > .byline,
+.paper-body > .note,
+.abstract p,
+.works-note,
+#teaching-brief p,
+.page-head .lede { max-width: var(--measure); }
+
+/* ---------- Sub-page scaffolding ---------- */
+.page { display: block; }
+.page-head { margin-bottom: 1.9rem; }
+.page-head h1 {
+    font-size: 1.95rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+.eyebrow {
+    margin: 0 0 0.35rem;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--faint);
+}
+.eyebrow a { color: var(--faint); text-decoration: none; }
+.eyebrow a:hover { color: var(--accent); text-decoration: underline; }
+.lede {
+    font-size: 1.08rem;
+    line-height: 1.62;
+    color: var(--fg);
+    margin: 0 0 1rem;
+}
+
+/* ---------- Sub-navigation between the two hobby pages ---------- */
+.subnav {
+    display: flex;
+    gap: 1.4rem;
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+}
+.subnav a {
+    color: var(--fg-3);
+    text-decoration: none;
+    padding-bottom: 0.35rem;
+    margin-bottom: -0.55rem;
+    border-bottom: 2px solid transparent;
+}
+.subnav a:hover { color: var(--fg); }
+.subnav a[aria-current="page"] {
+    color: var(--fg);
+    border-bottom-color: var(--accent);
+}
+
+/* ---------- Research: metadata hangs in a left rail ---------- */
+.papers { list-style: none; margin: 0; padding: 0; counter-reset: paper; }
+.paper {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    column-gap: 1.7rem;
+    padding: 1.4rem 0;
+    border-top: 1px solid var(--line-faint);
+}
+.paper:first-child { border-top: 0; padding-top: 0.2rem; }
+/* Body first in the DOM so the title is read first; the rail is placed
+   back into column one visually. */
+.paper-body { grid-column: 2; grid-row: 1; min-width: 0; }
+.paper-meta { grid-column: 1; grid-row: 1; padding-top: 0.15rem; }
+.paper-body h3 {
+    font-size: 1.06rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 0.4rem;
+    max-width: var(--measure);
+}
+.status-tag {
+    margin: 0 0 0.3rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent);
+    font-weight: 600;
+}
+.meta-line {
+    margin: 0 0 0.28rem;
+    font-size: 0.83rem;
+    line-height: 1.45;
+    color: var(--faint);
+}
+.meta-line a { color: var(--faint); }
+.meta-line a:hover { color: var(--accent); }
+
+/* ---------- Hobbies entry cards ---------- */
+.hobby-cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+}
+.hobby-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid var(--line-soft);
+    height: 100%;
+    transition: border-color .15s ease, transform .15s ease;
+}
+.hobby-card:hover { border-color: var(--accent); }
+@media (prefers-reduced-motion: no-preference) {
+    .hobby-card:hover { transform: translateY(-2px); }
+}
+.hobby-card img { width: 100%; height: 15rem; object-fit: cover; object-position: center; }
+.hobby-card-text { display: block; padding: 1rem 1.1rem 1.2rem; }
+.hobby-card-title {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+.hobby-card-note { display: block; font-size: 0.9rem; color: var(--fg-3); line-height: 1.5; }
+/* The music card has no photograph, so it is set rather than shot. */
+.hobby-card-art {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 15rem;
+    background: var(--line-faint);
+    border-bottom: 1px solid var(--line-soft);
+}
+.hobby-card-opus {
+    font-size: 2.6rem;
+    font-style: italic;
+    color: var(--fg-3);
+    line-height: 1;
+}
+.hobby-card-composer {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--faint);
+}
+
+/* ---------- Photo mosaic ---------- */
+/* Rows size themselves to their content rather than to a fixed height: a
+   fixed row height pushed each figcaption out of its cell and under the
+   next row of photographs. Each tile states its own aspect ratio instead,
+   and the caption then has somewhere to sit. */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: dense;
+    gap: 1.5rem 0.9rem;
+    margin-top: 2.4rem;
+    align-items: start;
+}
+.shot { margin: 0; min-width: 0; }
+.shot picture { display: block; }
+.shot img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: var(--line-faint);
+}
+/* Several of these photographs are neon-on-black and turn to mud at
+   thumbnail size, so they get the two-column tiles. */
+.shot--wide { grid-column: span 2; }
+.shot--wide img { aspect-ratio: 16 / 9; }
+.shot--tall img { aspect-ratio: 3 / 4; }
+.shot figcaption {
+    margin-top: 0.5rem;
+    font-size: 0.82rem;
+    color: var(--faint);
+    line-height: 1.45;
+}
+
+/* ---------- Works list ---------- */
+.works { margin-top: 2.4rem; }
+.works-composer {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--line);
+    max-width: var(--measure);
+}
+.works-composer:first-child { margin-top: 0; }
+.work-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: var(--measure);
+}
+.work-list li {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: baseline;
+    gap: 0 0.9rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--line-faint);
+}
+.work-list li:last-child { border-bottom: 0; }
+.work-title { font-size: 1rem; }
+.work-key { font-style: italic; color: var(--fg-3); font-size: 0.92rem; }
+.work-opus {
+    font-size: 0.8rem;
+    color: var(--faint);
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;
+}
+.works-note { color: var(--fg-3); line-height: 1.7; margin: 0; }
+
+/* ---------- Narrow screens ---------- */
+@media (max-width: 46rem) {
+    .paper { grid-template-columns: 1fr; row-gap: 0.5rem; }
+    .paper-body, .paper-meta { grid-column: 1; }
+    .paper-meta { grid-row: 1; }
+    .paper-body { grid-row: 2; }
+    .meta-line { display: inline; margin-right: 0.9rem; }
+    .hobby-cards { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .shot--wide, .shot--tall { grid-column: auto; grid-row: auto; }
+    .shot img { height: auto; }
+    .work-list li { grid-template-columns: 1fr auto; }
+    .work-key { grid-column: 1; font-size: 0.88rem; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+    .subnav, .hobby-cards, .gallery { display: none; }
+    .paper { grid-template-columns: 1fr; }
+    .paper-body, .paper-meta { grid-column: 1; }
+}
+
+/* The old design hung a "[n]" counter in an absolutely-positioned ::before at
+   left: 0. Now that column belongs to the metadata rail, so the counter becomes
+   a grid item in its own row above the rail and the body spans both rows. */
+.paper {
+    padding-left: 0;
+    margin-bottom: 0;
+    grid-template-rows: auto 1fr;
+}
+.paper::before {
+    position: static;
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 0.35rem;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+.paper-meta { grid-column: 1; grid-row: 2; padding-top: 0; }
+.paper-body { grid-column: 2; grid-row: 1 / span 2; }
+
+@media (max-width: 46rem) {
+    .paper { grid-template-rows: auto auto auto; }
+    .paper::before { grid-column: 1; grid-row: 1; }
+    .paper-meta { grid-column: 1; grid-row: 2; }
+    .paper-body { grid-column: 1; grid-row: 3; }
+}
+
+/* ---------- Narrow screens: the bar now carries a name, six links and a
+   toggle, which is far more than the four short anchors it was built for.
+   Let every part of it wrap, and stop the old rule from re-indenting the
+   now-gridded paper entries. ---------- */
+@media (max-width: 46rem) {
+    .topnav { padding-left: 1.25rem; padding-right: 1.25rem; margin-left: -1.25rem; margin-right: -1.25rem; }
+    .topnav-inner { flex-wrap: wrap; gap: 0.5rem 1.1rem; font-size: 0.85rem; }
+    /* Row one: the name and the toggle. Row two: the links. Ordering them
+       explicitly keeps the toggle off a wasted third line. */
+    .topnav-home { flex: 0 1 auto; order: 1; margin-right: 0; }
+    .theme-toggle { order: 2; margin-left: auto; }
+    .topnav-links { order: 3; flex: 1 1 100%; gap: 0.5rem 1.1rem; }
+    .paper { padding-left: 0; }
+    /* Nothing in the page may exceed the viewport: long titles, URLs and
+       hyphen-free words are the usual culprits. */
+    body { overflow-wrap: break-word; }
+}
+@media (max-width: 560px) {
+    .paper { padding-left: 0; }
+}
+
+
+/* ---- Record shelf (classical music) -------------------------------------
+   No cover scans: each record is set as a sleeve, so the shelf needs no
+   image assets and stays sharp at any size. Swapping in real artwork later
+   only means putting an <img> inside .sleeve. */
+.shelf { margin-top: 3rem; }
+
+.sleeves {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13.5rem, 1fr));
+    gap: 1rem;
+}
+
+.sleeve {
+    background: var(--bg);
+    background: color-mix(in oklab, var(--ink) 7%, var(--bg));
+    border: 1px solid var(--line-soft);
+    border-left: 5px solid var(--ink);
+    aspect-ratio: 1 / 1;
+    padding: 1.1rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.sleeve-composer {
+    margin: 0;
+    font-size: 0.7rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink);
+}
+
+/* The work title takes the space the sleeve has, and the credits sit on the
+   bottom edge whatever its length. */
+.sleeve-work {
+    margin: 0.55rem 0 0;
+    font-size: 1.24rem;
+    line-height: 1.22;
+    color: var(--fg);
+    text-wrap: balance;
+}
+
+.sleeve-performer {
+    margin: auto 0 0;
+    font-size: 0.83rem;
+    line-height: 1.45;
+    color: var(--fg-3);
+}
+
+.sleeve-year {
+    margin: 0.45rem 0 0;
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--faint);
+}
+
+@media (hover: hover) {
+    .sleeve:hover { transform: translateY(-2px); border-color: var(--ink); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sleeve { transition: none; }
+    .sleeve:hover { transform: none; }
+}
+
+@media print {
+    .sleeves { grid-template-columns: repeat(3, 1fr); }
+    .sleeve { break-inside: avoid; }
 }

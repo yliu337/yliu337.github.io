@@ -31,3 +31,10 @@ _inspect.html
 
 # Internal dev notes — not for the public repo
 README.md
+docs/
+
+# Full-resolution photo masters. tools/process_photos.py turns these into the
+# derivatives under images/pc/ that the site actually serves; committing 19 MB
+# of originals to a Pages repo would publish and permanently store them for no
+# benefit. The masters live in Dropbox alongside this checkout.
+images/_originals/

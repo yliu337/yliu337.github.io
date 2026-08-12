@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{DESCRIPTION}}">
+    <meta name="author" content="Leonard Yang Liu">
+    <meta name="google-site-verification" content="4EBlpKkCN5a4j7zvvDXB8dClp9Jyt-QGt7o2i9yOlBo" />
+    <link rel="canonical" href="https://leonardyangliu.com{{PATH}}">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta name="theme-color" content="#1F3A68" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)">
+
+    <!-- Social sharing (Open Graph / Twitter) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Leonard Yang Liu">
+    <meta property="og:title" content="{{OG_TITLE}}">
+    <meta property="og:description" content="{{OG_DESCRIPTION}}">
+    <meta property="og:url" content="https://leonardyangliu.com{{PATH}}">
+    <meta property="og:image" content="https://leonardyangliu.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Leonard Yang Liu — Ph.D. Candidate in Accounting, University of Maryland">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{OG_TITLE}}">
+    <meta name="twitter:description" content="{{OG_DESCRIPTION}}">
+    <meta name="twitter:image" content="https://leonardyangliu.com/og-image.png">
+{{HEAD_EXTRA}}
+    <link rel="preload" href="/fonts/XCharter-Roman.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/styles.css">
+
+    <script>
+      // Apply the saved theme before first paint (prevents a flash) and mark JS on.
+      (function () {
+        var e = document.documentElement;
+        e.classList.add('js');
+        try {
+          var t = localStorage.getItem('theme');
+          if (t === 'light' || t === 'dark') e.setAttribute('data-theme', t);
+        } catch (err) {}
+      })();
+    </script>
+</head>
+<body>
+{{PROGRESS}}
+<nav class="topnav">
+    <div class="topnav-inner">
+        <a class="topnav-home" href="/">Leonard Yang Liu</a>
+        <span class="topnav-links">
+{{NAV}}
+        </span>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Light / dark"></button>
+    </div>
+</nav>
+
+{{BODY}}
+
+<footer>
+    Last updated August 2026.
+</footer>
+
+<script src="/script.js" defer></script>
+</body>
+</html>
