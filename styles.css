@@ -562,6 +562,10 @@ main section.reveal.in { opacity: 1; transform: none; }
 }
 
 /* ---------- Research: metadata rail typography ---------- */
+/* The interests blurb is a two-line lede, not a full section; the papers
+   should follow it more closely than the default section rhythm. */
+#working-papers { margin-top: 1.6rem; }
+
 .status-tag {
     margin: 0 0 0.3rem;
     font-size: 0.72rem;
