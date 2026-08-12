@@ -38,3 +38,6 @@ docs/
 # of originals to a Pages repo would publish and permanently store them for no
 # benefit. The masters live in Dropbox alongside this checkout.
 images/_originals/
+
+# Build bookkeeping from tools/process_photos.py — not a served asset
+tools/photo-manifest.json

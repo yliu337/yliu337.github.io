@@ -1,7 +1,7 @@
 <main class="page">
 
 <header class="page-head">
-    <p class="eyebrow"><a href="/hobbies/">Hobbies</a></p>
+    <p class="eyebrow">Hobbies</p>
     <h1>PC Building</h1>
 </header>
 
@@ -16,62 +16,125 @@
         heavy lifting for my own research.
     </p>
     <p>
-        If you're planning a build and want a second opinion on parts, feel free to
+        If you&rsquo;re planning a build and want a second opinion on parts, feel free to
         <a href="mailto:yliu337@umd.edu?subject=PC%20build%20advice">reach out</a>. Fair warning:
-        as of late 2026 it's an unusually bad moment to buy &mdash; AI datacenter demand has pushed
-        memory, SSDs, and GPUs to prices that make a sensible build cost about what a silly one
-        used to.
+        as of mid-2026 it&rsquo;s an unusually bad moment to build your PC. AI datacenter demand has
+        pushed memory, SSDs, and GPUs to the point where a sensible build now costs about what
+        an extravagant one did a year ago.
     </p>
 </section>
 
 <section class="gallery" aria-label="Past builds">
-    <figure class="shot shot--tall">
-        <picture>
-            <source type="image/webp" srcset="/images/pc/01-rog-white-build-480.webp 480w, /images/pc/01-rog-white-build-960.webp 960w, /images/pc/01-rog-white-build-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, 33vw">
-            <img src="/images/pc/01-rog-white-build-1600.jpg" width="1600" height="2111" loading="lazy" decoding="async" alt="A white ASUS ROG case mid-build with its panels off, showing white cabling, a white AIO cooler and a white graphics card, a screwdriver lying on the desk beside it">
-        </picture>
+    <figure class="shot shot--tall" id="shot-1">
+        <a class="shot-open" href="#lightbox-1">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/01-rog-white-build-480.webp 480w, /images/pc/01-rog-white-build-960.webp 960w, /images/pc/01-rog-white-build-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, (max-width: 1080px) 33vw, 330px">
+                <img src="/images/pc/01-rog-white-build-1600.jpg" width="1600" height="2111" fetchpriority="high" decoding="async" alt="A white ASUS ROG case mid-build with its panels off, showing white cabling, a white AIO cooler and a white graphics card, a screwdriver lying on the desk beside it">
+            </picture>
+        </a>
         <figcaption>An all-white ROG build, part-way through.</figcaption>
     </figure>
 
-    <figure class="shot shot--wide">
-        <picture>
-            <source type="image/webp" srcset="/images/pc/02-desk-daylight-480.webp 480w, /images/pc/02-desk-daylight-960.webp 960w, /images/pc/02-desk-daylight-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, 66vw">
-            <img src="/images/pc/02-desk-daylight-1600.jpg" width="1600" height="1243" loading="lazy" decoding="async" alt="A black glass-panelled tower on a desk in daylight, lit strips glowing softly, next to a monitor and mouse">
-        </picture>
+    <figure class="shot shot--wide shot--deep" id="shot-2">
+        <a class="shot-open" href="#lightbox-2">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/02-desk-daylight-480.webp 480w, /images/pc/02-desk-daylight-960.webp 960w, /images/pc/02-desk-daylight-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, (max-width: 1080px) 66vw, 665px">
+                <img src="/images/pc/02-desk-daylight-1600.jpg" width="1600" height="1243" decoding="async" alt="A black glass-paneled tower on a desk in daylight, lit strips glowing softly, next to a monitor and mouse">
+            </picture>
+        </a>
         <figcaption>Daylight, and the case that finally matched the desk.</figcaption>
     </figure>
 
-    <figure class="shot">
-        <picture>
-            <source type="image/webp" srcset="/images/pc/03-interior-detail-480.webp 480w, /images/pc/03-interior-detail-960.webp 960w, /images/pc/03-interior-detail-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, 33vw">
-            <img src="/images/pc/03-interior-detail-1600.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Interior of a build showing routed cables, a radiator, memory sticks and a small display reporting a CPU temperature of 38 degrees">
-        </picture>
+    <figure class="shot shot--wide" id="shot-4">
+        <a class="shot-open" href="#lightbox-4">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/04-msi-dark-480.webp 480w, /images/pc/04-msi-dark-960.webp 960w, /images/pc/04-msi-dark-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, (max-width: 1080px) 66vw, 665px">
+                <img src="/images/pc/04-msi-dark-1600.jpg" width="1600" height="1201" loading="lazy" decoding="async" alt="A dark tower photographed at night, its memory and graphics card lighting the inside of the case in blue and green">
+            </picture>
+        </a>
+        <figcaption>A performance beast, after dark.</figcaption>
+    </figure>
+
+    <figure class="shot" id="shot-3">
+        <a class="shot-open" href="#lightbox-3">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/03-interior-detail-480.webp 480w, /images/pc/03-interior-detail-960.webp 960w, /images/pc/03-interior-detail-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, (max-width: 1080px) 33vw, 330px">
+                <img src="/images/pc/03-interior-detail-1600.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Interior of a build showing routed cables, a radiator, memory sticks and a small display reporting a CPU temperature of 38 degrees">
+            </picture>
+        </a>
         <figcaption>Where the actual work is: routing, airflow, and a thermal readout.</figcaption>
     </figure>
 
-    <figure class="shot shot--wide">
-        <picture>
-            <source type="image/webp" srcset="/images/pc/04-msi-dark-480.webp 480w, /images/pc/04-msi-dark-960.webp 960w, /images/pc/04-msi-dark-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, 66vw">
-            <img src="/images/pc/04-msi-dark-1600.jpg" width="1600" height="1201" loading="lazy" decoding="async" alt="A dark tower photographed at night, its memory and graphics card lighting the inside of the case in blue and green">
-        </picture>
-        <figcaption>The same machine after dark.</figcaption>
-    </figure>
-
-    <figure class="shot">
-        <picture>
-            <source type="image/webp" srcset="/images/pc/06-sff-corsair-480.webp 480w, /images/pc/06-sff-corsair-960.webp 960w, /images/pc/06-sff-corsair-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, 33vw">
-            <img src="/images/pc/06-sff-corsair-1600.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="A small-form-factor black case on a desk, spare components and boxes on shelves behind it">
-        </picture>
+    <figure class="shot" id="shot-6">
+        <a class="shot-open" href="#lightbox-6">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/06-sff-corsair-480.webp 480w, /images/pc/06-sff-corsair-960.webp 960w, /images/pc/06-sff-corsair-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, (max-width: 1080px) 33vw, 330px">
+                <img src="/images/pc/06-sff-corsair-1600.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="A small-form-factor black case on a desk, spare components and boxes on shelves behind it">
+            </picture>
+        </a>
         <figcaption>Small-form-factor, which is a different puzzle entirely.</figcaption>
     </figure>
 
-    <figure class="shot shot--wide">
-        <picture>
-            <source type="image/webp" srcset="/images/pc/05-rog-night-480.webp 480w, /images/pc/05-rog-night-960.webp 960w, /images/pc/05-rog-night-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, 66vw">
-            <img src="/images/pc/05-rog-night-1600.jpg" width="1600" height="1188" loading="lazy" decoding="async" alt="A desk at night lit almost entirely by the machine: violet light across the wall, a glowing keyboard, and the case beside a dark monitor">
-        </picture>
+    <figure class="shot shot--wide" id="shot-5">
+        <a class="shot-open" href="#lightbox-5">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/05-rog-night-480.webp 480w, /images/pc/05-rog-night-960.webp 960w, /images/pc/05-rog-night-1600.webp 1600w" sizes="(max-width: 46rem) 100vw, (max-width: 1080px) 66vw, 665px">
+                <img src="/images/pc/05-rog-night-1600.jpg" width="1600" height="1188" loading="lazy" decoding="async" alt="A desk at night lit almost entirely by the machine: violet light across the wall, a glowing keyboard, and the case beside a dark monitor">
+            </picture>
+        </a>
         <figcaption>A room lit by a computer.</figcaption>
     </figure>
+
+    <!-- CSS-only lightboxes: :target shows the overlay, the close link
+         returns to the tile. Works with JavaScript disabled. -->
+    <div class="lightbox" id="lightbox-1" role="dialog" aria-label="Full-size photo: An all-white ROG build, part-way through">
+        <a class="lightbox-close" href="#shot-1" aria-label="Close full-size view">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/01-rog-white-build-1600.webp">
+                <img src="/images/pc/01-rog-white-build-1600.jpg" width="1600" height="2111" loading="lazy" decoding="async" alt="A white ASUS ROG case mid-build with its panels off, showing white cabling, a white AIO cooler and a white graphics card, a screwdriver lying on the desk beside it">
+            </picture>
+        </a>
+    </div>
+    <div class="lightbox" id="lightbox-2" role="dialog" aria-label="Full-size photo: Daylight, and the case that finally matched the desk">
+        <a class="lightbox-close" href="#shot-2" aria-label="Close full-size view">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/02-desk-daylight-1600.webp">
+                <img src="/images/pc/02-desk-daylight-1600.jpg" width="1600" height="1243" loading="lazy" decoding="async" alt="A black glass-paneled tower on a desk in daylight, lit strips glowing softly, next to a monitor and mouse">
+            </picture>
+        </a>
+    </div>
+    <div class="lightbox" id="lightbox-4" role="dialog" aria-label="Full-size photo: A performance beast, after dark">
+        <a class="lightbox-close" href="#shot-4" aria-label="Close full-size view">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/04-msi-dark-1600.webp">
+                <img src="/images/pc/04-msi-dark-1600.jpg" width="1600" height="1201" loading="lazy" decoding="async" alt="A dark tower photographed at night, its memory and graphics card lighting the inside of the case in blue and green">
+            </picture>
+        </a>
+    </div>
+    <div class="lightbox" id="lightbox-3" role="dialog" aria-label="Full-size photo: Where the actual work is: routing, airflow, and a thermal readout">
+        <a class="lightbox-close" href="#shot-3" aria-label="Close full-size view">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/03-interior-detail-1600.webp">
+                <img src="/images/pc/03-interior-detail-1600.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Interior of a build showing routed cables, a radiator, memory sticks and a small display reporting a CPU temperature of 38 degrees">
+            </picture>
+        </a>
+    </div>
+    <div class="lightbox" id="lightbox-6" role="dialog" aria-label="Full-size photo: Small-form-factor, which is a different puzzle entirely">
+        <a class="lightbox-close" href="#shot-6" aria-label="Close full-size view">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/06-sff-corsair-1600.webp">
+                <img src="/images/pc/06-sff-corsair-1600.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="A small-form-factor black case on a desk, spare components and boxes on shelves behind it">
+            </picture>
+        </a>
+    </div>
+    <div class="lightbox" id="lightbox-5" role="dialog" aria-label="Full-size photo: A room lit by a computer">
+        <a class="lightbox-close" href="#shot-5" aria-label="Close full-size view">
+            <picture>
+                <source type="image/webp" srcset="/images/pc/05-rog-night-1600.webp">
+                <img src="/images/pc/05-rog-night-1600.jpg" width="1600" height="1188" loading="lazy" decoding="async" alt="A desk at night lit almost entirely by the machine: violet light across the wall, a glowing keyboard, and the case beside a dark monitor">
+            </picture>
+        </a>
+    </div>
 </section>
 
 </main>

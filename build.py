@@ -18,10 +18,6 @@ ROOT = Path(__file__).resolve().parent
 LAYOUT = ROOT / "_layout.html"
 PAGES = ROOT / "_pages"
 
-SITE_DESC = ("Ph.D. candidate in Accounting at the University of Maryland's Robert H. Smith "
-             "School of Business. Research on AI, generative AI, and financial information in "
-             "capital markets. On the 2026–27 academic job market.")
-
 # The person markup belongs on the home page only; repeating it on every page
 # gives search engines four competing descriptions of the same person.
 PERSON_JSONLD = """    <script type="application/ld+json">
@@ -60,15 +56,22 @@ PERSON_JSONLD = """    <script type="application/ld+json">
 """
 
 # Top-level navigation, in the order a visitor should meet it. `key` is matched
-# against each page's `nav` field to mark the current item.
+# against each page's `nav` field to mark the current item. Hobbies points
+# straight at the first hobby: the sub-navigation strip on those pages does the
+# switching, so an intermediate landing page would be one click of pure ceremony.
+# Contact lives in the footer of every page rather than in the nav.
 NAV = [
-    ("about",    "/#about",     "About"),
-    ("research", "/#research",  "Research"),
-    ("teaching", "/teaching/",  "Teaching"),
-    ("hobbies",  "/hobbies/",   "Hobbies"),
-    ("cv",       "/cv.pdf",     "CV"),
-    ("contact",  "/#contact",   "Contact"),
+    ("about",    "/",                     "About"),
+    ("research", "/research/",            "Research"),
+    ("teaching", "/teaching/",            "Teaching"),
+    ("hobbies",  "/hobbies/pc-building/", "Hobbies"),
+    ("cv",       "/cv.pdf",               "CV"),
 ]
+
+# Old URLs that must keep working after the restructure -> where they go now.
+REDIRECTS = {
+    "hobbies/index.html": "/hobbies/pc-building/",
+}
 
 PAGE_LIST = [
     dict(src="index.html", out="index.html", path="/", nav="about",
@@ -77,18 +80,20 @@ PAGE_LIST = [
          description=("Leonard Yang Liu, Accounting Ph.D. candidate at the University of Maryland "
                       "(Smith). Research on AI and generative AI in capital markets, financial "
                       "analysts, and earnings forecasts. On the 2026–27 job market."),
-         head_extra=PERSON_JSONLD, progress=True),
+         head_extra=PERSON_JSONLD),
+
+    dict(src="research.html", out="research/index.html", path="/research/", nav="research",
+         title="Research — Leonard Yang Liu",
+         og_title="Research — Leonard Yang Liu",
+         description=("Research by Leonard Yang Liu on generative AI and financial information in "
+                      "capital markets: consensus forecasts, sell-side analysts, crowdsourced "
+                      "forecasts, and CFO communication.")),
 
     dict(src="teaching.html", out="teaching/index.html", path="/teaching/", nav="teaching",
          title="Teaching — Leonard Yang Liu",
          og_title="Teaching — Leonard Yang Liu",
          description=("Teaching record of Leonard Yang Liu: instructor of record for Principles of "
                       "Accounting I at the University of Maryland, with course evaluations.")),
-
-    dict(src="hobbies.html", out="hobbies/index.html", path="/hobbies/", nav="hobbies",
-         title="Hobbies — Leonard Yang Liu",
-         og_title="Hobbies — Leonard Yang Liu",
-         description="Two long-running hobbies: building PCs, and Romantic-era classical music."),
 
     dict(src="pc-building.html", out="hobbies/pc-building/index.html",
          path="/hobbies/pc-building/", nav="hobbies",
@@ -101,28 +106,57 @@ PAGE_LIST = [
          path="/hobbies/classical-music/", nav="hobbies",
          title="Classical Music — Leonard Yang Liu",
          og_title="Classical Music — Leonard Yang Liu",
-         description=("At the piano since six, and a Romantic ever since: Rachmaninoff's Second and "
-                      "Third Concertos, the Second Symphony, and Beethoven.")),
+         description=("At the piano since six and a classical music fan ever since, drawn above "
+                      "all to the Romantic era: Rachmaninoff's Second and Third Concertos, the "
+                      "Second Symphony, and Beethoven.")),
 ]
 
 
-def render_nav(active: str, is_home: bool) -> str:
+def render_nav(active: str, path: str) -> str:
     """Render the bar, marking the current page.
 
-    Section links point at bare fragments on the home page so the scroll-spy in
-    script.js (which selects `.topnav a[href^="#"]`) can find and highlight them,
-    and at root-relative fragments elsewhere so they navigate home first. The home
-    page therefore carries no aria-current on a section link: which section is
-    "current" there depends on scroll position, and the script owns that.
+    aria-current="page" is only honest when the link's target IS the page being
+    viewed; when the link merely belongs to the active section (Hobbies while
+    on /hobbies/classical-music/), the correct token is "true".
     """
     out = []
     for key, href, label in NAV:
-        if is_home and href.startswith("/#"):
-            href = href[1:]
-        attrs = ' aria-current="page"' if key == active and not href.startswith("#") else ""
+        if href == path:
+            attrs = ' aria-current="page"'
+        elif key == active:
+            attrs = ' aria-current="true"'
+        else:
+            attrs = ""
         ext = ' target="_blank" rel="noopener"' if href.endswith(".pdf") else ""
         out.append(f'            <a href="{href}"{attrs}{ext}>{label}</a>')
     return "\n".join(out)
+
+
+def asset_stamp(layout: str) -> str:
+    """Append ?v=<content-hash> to the css/js references in the layout, so a
+    republish can never pair a browser-cached old script with a new stylesheet
+    (or vice versa): any change to either file changes the URL."""
+    import hashlib
+    for name in ("styles.css", "script.js"):
+        digest = hashlib.md5((ROOT / name).read_bytes()).hexdigest()[:8]
+        layout = layout.replace(f'"/{name}"', f'"/{name}?v={digest}"')
+    return layout
+
+
+REDIRECT_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url={target}">
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="https://leonardyangliu.com{target}">
+    <title>Redirecting&hellip;</title>
+</head>
+<body>
+    <p><a href="{target}">This page has moved.</a></p>
+</body>
+</html>
+"""
 
 
 def render(page: dict, layout: str) -> str:
@@ -135,9 +169,7 @@ def render(page: dict, layout: str) -> str:
         "{{OG_DESCRIPTION}}": html.escape(page.get("og_description", page["description"]), quote=True),
         "{{PATH}}": page["path"],
         "{{HEAD_EXTRA}}": page.get("head_extra", ""),
-        # The reading-progress bar earns its place only on the long landing page.
-        "{{PROGRESS}}": '<div id="progress" aria-hidden="true"></div>\n' if page.get("progress") else "",
-        "{{NAV}}": render_nav(page["nav"], page["path"] == "/"),
+        "{{NAV}}": render_nav(page["nav"], page["path"]),
         "{{BODY}}": body,
     }.items():
         out = out.replace(token, value)
@@ -149,19 +181,20 @@ def render(page: dict, layout: str) -> str:
 
 def main(argv: list[str]) -> int:
     check = "--check" in argv
-    layout = LAYOUT.read_text(encoding="utf-8")
+    layout = asset_stamp(LAYOUT.read_text(encoding="utf-8"))
     stale = []
-    for page in PAGE_LIST:
-        rendered = render(page, layout)
-        dest = ROOT / page["out"]
+    outputs = [(page["out"], render(page, layout)) for page in PAGE_LIST]
+    outputs += [(out, REDIRECT_HTML.format(target=t)) for out, t in REDIRECTS.items()]
+    for out_path, rendered in outputs:
+        dest = ROOT / out_path
         current = dest.read_text(encoding="utf-8") if dest.exists() else None
         if check:
             if current != rendered:
-                stale.append(page["out"])
+                stale.append(out_path)
             continue
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_text(rendered, encoding="utf-8")
-        print(f"  {'=' if current == rendered else '+'} {page['out']}")
+        print(f"  {'=' if current == rendered else '+'} {out_path}")
     if check:
         if stale:
             print("stale output, run python3 build.py:\n  " + "\n  ".join(stale), file=sys.stderr)

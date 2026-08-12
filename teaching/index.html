@@ -32,7 +32,8 @@
     <meta name="twitter:image" content="https://leonardyangliu.com/og-image.png">
 
     <link rel="preload" href="/fonts/XCharter-Roman.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="preload" href="/fonts/XCharter-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/styles.css?v=d30cb55f">
 
     <script>
       // Apply the saved theme before first paint (prevents a flash) and mark JS on.
@@ -47,17 +48,15 @@
     </script>
 </head>
 <body>
-
 <nav class="topnav">
     <div class="topnav-inner">
         <a class="topnav-home" href="/">Leonard Yang Liu</a>
         <span class="topnav-links">
-            <a href="/#about">About</a>
-            <a href="/#research">Research</a>
+            <a href="/">About</a>
+            <a href="/research/">Research</a>
             <a href="/teaching/" aria-current="page">Teaching</a>
-            <a href="/hobbies/">Hobbies</a>
+            <a href="/hobbies/pc-building/">Hobbies</a>
             <a href="/cv.pdf" target="_blank" rel="noopener">CV</a>
-            <a href="/#contact">Contact</a>
         </span>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Light / dark"></button>
     </div>
@@ -70,15 +69,15 @@
     <h1>Teaching</h1>
 </header>
 
-<section>
+<section id="instructor-of-record">
     <h2>Instructor of Record</h2>
-    <p>
-        <strong>BMGT 220 &mdash; Principles of Accounting I: Financial Accounting.</strong>
-        University of Maryland, Robert H. Smith School of Business.
-    </p>
+    <ul class="teach-list">
+        <li><strong>BMGT 220 &mdash; Principles of Accounting I: Financial Accounting.</strong>
+            University of Maryland, Robert H. Smith School of Business.</li>
+    </ul>
     <table class="evals">
         <thead>
-            <tr><th>Term</th><th>Course</th><th>Instructor</th></tr>
+            <tr><th>Term</th><th>Course rating</th><th>Instructor rating</th></tr>
         </thead>
         <tbody>
             <tr><td>Summer 2025</td><td>3.82 / 4.0</td><td>3.89 / 4.0</td></tr>
@@ -87,19 +86,43 @@
     </table>
 </section>
 
-<section>
+<section id="student-comments">
+    <h2>What Students Say</h2>
+    <p class="note">Verbatim comments from official course evaluations.</p>
+    <ul class="quote-list">
+        <li class="quote">
+            <blockquote><p>I would recommend him to every student as he made accounting, a topic that many describe as difficult or boring, into something extremely interesting and clear.</p></blockquote>
+            <cite>BMGT 220, Winter 2025</cite>
+        </li>
+        <li class="quote">
+            <blockquote><p>The teacher demonstrated a great degree of care when it came to his student&rsquo;s success. He recorded each lecture and posted it that same day.</p></blockquote>
+            <cite>BMGT 220, Winter 2025</cite>
+        </li>
+        <li class="quote">
+            <blockquote><p>His teaching style was quite effective and he actually took the time to sit and help you through any question. He also taught incredibly well.</p></blockquote>
+            <cite>BMGT 220, Summer 2025</cite>
+        </li>
+    </ul>
+</section>
+
+<section id="other-teaching">
     <h2>Other Teaching Experience</h2>
-    <p class="other-teaching">Invited instructor, AI Bootcamp for incoming MBAs (3-hour session), UMD Smith Center for Artificial Intelligence in Business (Sep 2026, scheduled).</p>
-    <p class="other-teaching">Guest speaker, Fundamentals of Business Research, UMD Smith (Sep 2025).</p>
-    <p class="other-teaching">Teaching assistant, Peking University HSBC Business School (2018&ndash;2020).</p>
+    <ul class="teach-list">
+        <li>Invited instructor, AI Bootcamp for incoming MBAs (3-hour session), UMD Smith Center for Artificial Intelligence in Business (Sep 2026, scheduled).</li>
+        <li>Guest speaker, Fundamentals of Business Research, UMD Smith (Sep 2025).</li>
+        <li>Teaching assistant, Peking University HSBC Business School (2018&ndash;2020).</li>
+    </ul>
 </section>
 
 </main>
 
 <footer>
-    Last updated August 2026.
+    <p>3330F Van Munching Hall, Robert H. Smith School of Business, University of Maryland,
+       College Park, MD 20742
+       &middot; <a href="mailto:yliu337@umd.edu">yliu337@umd.edu</a><button type="button" class="copy-btn" data-copy="yliu337@umd.edu" aria-label="Copy email address">copy</button></p>
+    <p class="updated"><em>Last updated August 2026.</em></p>
 </footer>
 
-<script src="/script.js" defer></script>
+<script src="/script.js?v=86bab47b" defer></script>
 </body>
 </html>
