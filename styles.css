@@ -812,3 +812,16 @@ main section.reveal.in { opacity: 1; transform: none; }
 .quote blockquote p::before { content: "\201C"; color: var(--faint-2); margin-right: 0.05em; }
 .quote blockquote p::after  { content: "\201D"; color: var(--faint-2); margin-left: 0.05em; }
 .quote cite { display: block; margin-top: 0.45rem; font-style: normal; font-size: 0.82rem; color: var(--muted); }
+
+
+/* Research interests: parallel topics, one bullet each. */
+.interest-list {
+    list-style: disc outside;
+    margin: 0;
+    padding-left: 1.15rem;
+    font-size: 1.04rem;
+    line-height: 1.6;
+}
+.interest-list li { margin: 0 0 0.4rem; }
+.interest-list li:last-child { margin-bottom: 0; }
+.interest-list li::marker { color: var(--faint-2); }
