@@ -721,6 +721,15 @@ main section.reveal.in { opacity: 1; transform: none; }
     border: 1px solid var(--line-soft);
 }
 .sleeve figcaption { margin-top: 0.55rem; line-height: 1.4; }
+
+/* Each sleeve links to its recording on Spotify. The whole figure is the
+   click target; the affordance stays quiet -- the frame and the work title
+   take the accent on hover, with no underline across the caption block. */
+.sleeve-link { display: block; color: inherit; text-decoration: none; }
+.sleeve-link:hover img,
+.sleeve-link:focus-visible img { border-color: var(--accent); }
+.sleeve-link:hover .sleeve-work,
+.sleeve-link:focus-visible .sleeve-work { color: var(--accent); }
 .sleeve-work { display: block; font-weight: 600; font-size: 0.95rem; color: var(--fg); }
 .sleeve-performer { display: block; margin-top: 0.1rem; font-size: 0.82rem; color: var(--muted); }
 
