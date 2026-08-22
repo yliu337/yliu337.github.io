@@ -733,6 +733,15 @@ main section.reveal.in { opacity: 1; transform: none; }
 .sleeve-work { display: block; font-weight: 600; font-size: 0.95rem; color: var(--fg); }
 .sleeve-performer { display: block; margin-top: 0.1rem; font-size: 0.82rem; color: var(--muted); }
 
+/* A closing aside under the shelf: one thought, set quietly. */
+.shelf-note {
+    margin: 1.5rem 0 0;
+    max-width: 46rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--muted);
+}
+
 @media (max-width: 46rem) {
     .sleeves { grid-template-columns: minmax(0, 22rem); }
 }
