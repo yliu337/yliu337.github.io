@@ -64,13 +64,13 @@ NAV = [
     ("about",    "/",                     "About"),
     ("research", "/research/",            "Research"),
     ("teaching", "/teaching/",            "Teaching"),
-    ("hobbies",  "/hobbies/pc-building/", "Hobbies"),
+    ("hobbies",  "/hobbies/classical-music/", "Hobbies"),
     ("cv",       "/cv.pdf",               "CV"),
 ]
 
 # Old URLs that must keep working after the restructure -> where they go now.
 REDIRECTS = {
-    "hobbies/index.html": "/hobbies/pc-building/",
+    "hobbies/index.html": "/hobbies/classical-music/",
 }
 
 PAGE_LIST = [
