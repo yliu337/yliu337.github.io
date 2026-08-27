@@ -24,49 +24,10 @@
 
 html { font-size: 19px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: var(--bg); }
 
+/* Dark is the site's default, whatever the visitor's system is set to. Light
+   is opt-in: the toggle writes data-theme="light" and remembers it. */
 :root {
-    color-scheme: light dark;
-    --bg: #ffffff;
-    --fg: #1a1a1a;
-    --fg-2: #2a2a2a;
-    --fg-3: #4a4a4a;
-    --muted: #5a5a5a;
-    --faint: #888888;
-    --faint-2: #999999;
-    --copy: #b0b0b0;
-    --sep: #aaaaaa;
-    --accent: #1F3A68;
-    --accent-hover: #0a1a3a;
-    --line: #d0d0d0;
-    --line-soft: #e0e0e0;
-    --line-faint: #eeeeee;
-    --line-table: #cccccc;
-    --nav-bg: rgba(255, 255, 255, 0.94);
-}
-
-/* Dark palette: applied when the system prefers dark (unless the visitor
-   forced light), or when the visitor explicitly chose dark. */
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-        --bg: #15171c;
-        --fg: #e3e3e3;
-        --fg-2: #cfd1d4;
-        --fg-3: #aab0b8;
-        --muted: #9098a2;
-        --faint: #7c828c;
-        --faint-2: #6e757f;
-        --copy: #6e757f;
-        --sep: #4a4f57;
-        --accent: #8bb0e6;
-        --accent-hover: #b0caf2;
-        --line: #333a45;
-        --line-soft: #2a303a;
-        --line-faint: #23272e;
-        --line-table: #333a45;
-        --nav-bg: rgba(21, 23, 28, 0.9);
-    }
-}
-:root[data-theme="dark"] {
+    color-scheme: dark;
     --bg: #15171c;
     --fg: #e3e3e3;
     --fg-2: #cfd1d4;
@@ -83,6 +44,27 @@ html { font-size: 19px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth;
     --line-faint: #23272e;
     --line-table: #333a45;
     --nav-bg: rgba(21, 23, 28, 0.9);
+}
+
+/* Light palette: only when the visitor asks for it. */
+:root[data-theme="light"] {
+    color-scheme: light;
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --fg-2: #2a2a2a;
+    --fg-3: #4a4a4a;
+    --muted: #5a5a5a;
+    --faint: #888888;
+    --faint-2: #999999;
+    --copy: #b0b0b0;
+    --sep: #aaaaaa;
+    --accent: #1F3A68;
+    --accent-hover: #0a1a3a;
+    --line: #d0d0d0;
+    --line-soft: #e0e0e0;
+    --line-faint: #eeeeee;
+    --line-table: #cccccc;
+    --nav-bg: rgba(255, 255, 255, 0.94);
 }
 
 body {

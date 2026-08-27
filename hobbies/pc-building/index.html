@@ -13,8 +13,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta name="theme-color" content="#1F3A68" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)">
+    <!-- Dark by default; script.js repoints this if the visitor picks light. -->
+    <meta name="theme-color" content="#15171c">
 
     <!-- Social sharing (Open Graph / Twitter) -->
     <meta property="og:type" content="website">
@@ -33,10 +33,11 @@
 
     <link rel="preload" href="/fonts/XCharter-Roman.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/XCharter-Bold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="/styles.css?v=092aa5cc">
+    <link rel="stylesheet" href="/styles.css?v=d99e9317">
 
     <script>
-      // Apply the saved theme before first paint (prevents a flash) and mark JS on.
+      // The site is dark by default (see styles.css). This applies a saved
+      // light choice before first paint, so returning visitors see no flash.
       (function () {
         var e = document.documentElement;
         e.classList.add('js');
@@ -209,6 +210,6 @@
     <p class="updated"><em>Last updated August 2026.</em></p>
 </footer>
 
-<script src="/script.js?v=86bab47b" defer></script>
+<script src="/script.js?v=61993ce2" defer></script>
 </body>
 </html>

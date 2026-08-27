@@ -89,7 +89,8 @@
     });
   }
 
-  // 4) Light / dark toggle — overrides the system setting and remembers it.
+  // 4) Light / dark toggle — the site is dark by default; this opts into light
+  //    and remembers the choice.
   var toggle = document.getElementById("theme-toggle");
   if (toggle) {
     // Sun and moon flank the track and label its two ends; the track itself
@@ -102,12 +103,10 @@
     toggle.innerHTML =
       SUN + '<span class="switch-track"><span class="switch-knob"></span></span>' + MOON;
     var effective = function () {
-      var f = document.documentElement.getAttribute("data-theme");
-      if (f === "light" || f === "dark") return f;
-      return window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+      // Dark unless the visitor has explicitly chosen light.
+      return document.documentElement.getAttribute("data-theme") === "light"
+        ? "light"
+        : "dark";
     };
     var render = function () {
       var dark = effective() === "dark";
@@ -116,6 +115,9 @@
         dark ? "Switch to light mode" : "Switch to dark mode"
       );
       toggle.setAttribute("aria-pressed", dark ? "true" : "false");
+      // Keep the browser chrome in step with the page.
+      var meta = document.querySelector('meta[name="theme-color"]');
+      if (meta) meta.setAttribute("content", dark ? "#15171c" : "#1F3A68");
     };
     toggle.addEventListener("click", function () {
       var next = effective() === "dark" ? "light" : "dark";
@@ -123,11 +125,6 @@
       try { localStorage.setItem("theme", next); } catch (e) {}
       render();
     });
-    if (window.matchMedia) {
-      var mq = window.matchMedia("(prefers-color-scheme: dark)");
-      if (mq.addEventListener) mq.addEventListener("change", render);
-      else if (mq.addListener) mq.addListener(render);
-    }
     render();
   }
 })();
