@@ -1,25 +1,27 @@
 /* Leonard Yang Liu — personal site. Plain academic homepage. */
 
-/* ---------- Type: self-hosted XCharter (matches the CV) ---------- */
+/* ---------- Type: self-hosted Spectral (matches the CV) ----------
+   400 = Spectral Regular, 600 = Spectral SemiBold; requests for 700 resolve
+   to the 600 face, the same Regular/SemiBold pairing the CV uses. */
 @font-face {
-    font-family: 'XCharter';
-    src: url('fonts/XCharter-Roman.woff2') format('woff2');
+    font-family: 'Spectral';
+    src: url('fonts/Spectral-Regular.woff2') format('woff2');
     font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
-    font-family: 'XCharter';
-    src: url('fonts/XCharter-Italic.woff2') format('woff2');
+    font-family: 'Spectral';
+    src: url('fonts/Spectral-Italic.woff2') format('woff2');
     font-weight: 400; font-style: italic; font-display: swap;
 }
 @font-face {
-    font-family: 'XCharter';
-    src: url('fonts/XCharter-Bold.woff2') format('woff2');
-    font-weight: 700; font-style: normal; font-display: swap;
+    font-family: 'Spectral';
+    src: url('fonts/Spectral-SemiBold.woff2') format('woff2');
+    font-weight: 600; font-style: normal; font-display: swap;
 }
 @font-face {
-    font-family: 'XCharter';
-    src: url('fonts/XCharter-BoldItalic.woff2') format('woff2');
-    font-weight: 700; font-style: italic; font-display: swap;
+    font-family: 'Spectral';
+    src: url('fonts/Spectral-SemiBoldItalic.woff2') format('woff2');
+    font-weight: 600; font-style: italic; font-display: swap;
 }
 
 html { font-size: 19px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth; background: var(--bg); }
@@ -68,7 +70,7 @@ html { font-size: 19px; -webkit-text-size-adjust: 100%; scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'XCharter', Charter, 'Iowan Old Style', 'Source Serif Pro', 'Apple Garamond', Georgia, serif;
+    font-family: 'Spectral', Charter, 'Iowan Old Style', 'Source Serif Pro', 'Apple Garamond', Georgia, serif;
     line-height: 1.6;
     color: var(--fg);
     background: var(--bg);
@@ -295,7 +297,7 @@ h2:hover .heading-anchor,
     grid-column: 1;
     grid-row: 1;
     margin-bottom: 0.35rem;
-    font-family: 'XCharter', Charter, Georgia, serif;
+    font-family: 'Spectral', Charter, Georgia, serif;
     color: var(--faint-2);
     font-size: 0.8rem;
     line-height: 1.2;
